@@ -1,0 +1,28 @@
+---
+title: "Sample Size Planning for a Cohort Study"
+author: "Nazman, Ezgi"
+date: "2024-10-17"
+output: html_document
+---
+
+```{r}
+p1 = 0.10  # Control group incidence rate
+p2 = 0.08  # Treatment group incidence rate
+alpha = 0.05  # Significance level
+power = 0.80  # Desired power
+
+library(pwr)
+
+# Calculate effect size
+h <- ES.h(p1, p2)
+
+# Sample size calculation with 80% power and 5% significance level
+result <- pwr.2p.test(h = h, sig.level = alpha, power = power)
+
+# Round the required sample size per group to the nearest integer
+sample_size_per_group <- ceiling(result$n)
+
+# Output the required sample size per group
+print(sample_size_per_group)
+
+```
